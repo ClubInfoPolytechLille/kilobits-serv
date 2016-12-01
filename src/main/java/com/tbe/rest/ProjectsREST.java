@@ -18,7 +18,6 @@ import com.tbe.database.UsersRequest;
 import com.tbe.json.Chat;
 import com.tbe.json.Project;
 import com.tbe.json.Salon;
-import com.tbe.tools.GitHubManager;
 
 @Path("/projects")
 public class ProjectsREST {
@@ -72,41 +71,5 @@ public class ProjectsREST {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("Project no exist").build();
 		}
-	}
-
-	@POST
-	@Path("/{username}")
-	public Response postProject(Project project,
-			@PathParam("username") String username) {
-		username = username.toLowerCase();
-		int id = ProjectsRequest.addProject(project.getName(),
-				project.getDescription(), project.getUrl(),
-				project.getPunchline());
-		if (id == -1) {
-			return Response.status(Response.Status.BAD_REQUEST)
-					.entity("Entity already exist").build();
-		}
-		System.out.println(">---- " + username);
-		try {
-			
-			if (!GitHubManager.createRepo(username, UsersRequest.getUser(username).getPassword(), project.getName(), project.getPunchline(), project.getDescription())){
-				return Response.status(Response.Status.BAD_REQUEST)
-						.entity("Git Erreur").build();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			return Response.status(Response.Status.BAD_REQUEST)
-					.entity("Git Erreur").build();
-		}
-		String result = MembersRequest.addMember(username.toLowerCase(), id, 1);
-		if (result == null) {
-			return Response.status(Response.Status.BAD_REQUEST)
-					.entity("User no exist").build();
-		} else{
-		Chat.salons.put(id, new Salon(id));
-		Response response = Response.status(201)
-				.type(MediaType.APPLICATION_JSON).entity(project).build();
-		System.out.println("Project Created");
-		return response;}
 	}
 }

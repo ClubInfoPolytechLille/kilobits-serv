@@ -21,7 +21,6 @@ import com.tbe.database.MembersRequest;
 import com.tbe.json.Member;
 import com.tbe.json.Project;
 import com.tbe.json.User;
-import com.tbe.tools.Mailer;
 
 @Path("/members")
 public class MembersREST {

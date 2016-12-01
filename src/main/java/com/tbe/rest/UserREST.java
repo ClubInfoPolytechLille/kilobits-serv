@@ -16,8 +16,6 @@ import javax.ws.rs.core.Response;
 import com.tbe.database.FonctionnalitiesRequest;
 import com.tbe.database.UsersRequest;
 import com.tbe.json.User;
-import com.tbe.tools.GitHubManager;
-import com.tbe.tools.Mailer;
 
 @Path("/users")
 public class UserREST {
@@ -64,59 +62,5 @@ public class UserREST {
 			return Response.status(Response.Status.BAD_REQUEST)
 					.entity("can't delete users : " + username).build();
 		}
-	}
-
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response addUser(User user) {
-		System.out.println("Post User\nusername:" + user.getUsername()
-				+ "\npassword:" + user.getPassword() + "\nemail:"
-				+ user.getEmail() + "\nfirstname:" + user.getFirstname()
-				+ "\nlastname:" + user.getLastname());
-
-		String username = user.getUsername().toLowerCase();
-		String password = user.getPassword();
-
-		try {
-			if (!GitHubManager.userExists(username, password)) {
-				Response response = Response.status(400)
-						.type(MediaType.APPLICATION_JSON).build();
-				return response;
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		String email = user.getEmail().toLowerCase();
-		String firstname = user.getFirstname().substring(0, 1).toUpperCase()
-				+ user.getFirstname().substring(1).toLowerCase();
-		String lastname = user.getLastname().substring(0, 1).toUpperCase()
-				+ user.getLastname().substring(1).toLowerCase();
-		System.out.println("New user : " + username + "/" + password + "/"
-				+ email + "/" + firstname + "/" + lastname);
-		String result = UsersRequest.addUser(username, password, email,
-				firstname, lastname);
-
-		if (result == null) {
-			Response response = Response.status(400)
-					.type(MediaType.APPLICATION_JSON).build();
-			return response;
-		}
-		Response response = Response.status(201)
-				.type(MediaType.APPLICATION_JSON).entity(user).build();
-		System.out.println("User Created");
-		try {
-			Mailer.sendMail(user.getEmail(), "ProLab - Registration",
-					"Welcome to ProLab, " + user.getFirstname()
-							+ " ! Check out your profile infos :\n"
-							+ " - Username : "
-							+ user.getUsername().toLowerCase() + "\n"
-							+ " - Password : " + user.getPassword() + "\n"
-							+ "\nWe hope you'll enjoy using our platform !\n"
-							+ "\n\nAlexandre Beaudet\n" + "www.prolab.com\n");
-		} catch (Exception e) {
-			System.out.println("Mail not sent");
-		}
-		return response;
 	}
 }
