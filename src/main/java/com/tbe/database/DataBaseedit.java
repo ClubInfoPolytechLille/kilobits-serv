@@ -36,6 +36,21 @@ public class DataBaseedit {
 			+ "Divers VARCHAR(30), "
 			+ "Dispo BOOL DEFAULT 'false');";
 
+	private static String strCreateEvenementTable = "Create table if not exists Evenement ("
+			+ "Id varchar(20) primary key,"
+			+ "Lieu varchar(20) NOT NULL,"
+			+ "Date varchar(20) NOT NULL,"
+			+ "Description varchar(500) NOT NULL);";
+	private static String strCreateBesoinTable = "Create table if not exists Besoin ("
+			+ "Id varchar(20) primary key,"
+			+ "Titre varchar(20) NOT NULL,"
+			+ "Description varchar(500) NOT NULL);";
+	private static String strCreateForumAIdeesTable =
+			"Create table if not exists members ("
+					+ "Id varchar(20) primary key,"
+					+ "Nom varchar(20) NOT NULL,"
+					+ "Description varchar(500) NOT NULL);";
+
 	public DataBaseedit() {
 		System.out.println("Init BDD...");
 		Connection c = null;
