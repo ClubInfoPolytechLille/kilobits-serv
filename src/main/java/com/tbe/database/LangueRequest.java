@@ -1,9 +1,7 @@
 package com.tbe.database;
 
-import com.tbe.json.Fonctionnality;
 import com.tbe.json.Langue;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

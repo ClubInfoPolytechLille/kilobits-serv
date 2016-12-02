@@ -30,18 +30,17 @@ public class DataBase {
 			+ "Pseudo varchar(30) NOT NULL, "
 			+ "Nom varchar(30) NOT NULL, "
 			+ "Prenom varchar(30) NOT NULL, "
-			+ "Pseudo varchar(30) NOT NULL, "
 			+ "Mdp varchar(30) NOT NULL DEFAULT '0000', "
 			+ "Ville varchar(30), "
 			+ "EstMobile BOOL NOT NULL DEFAULT 'false', "
-			+ "Type BOOL NOT NULL DEFAULT 'false', " // Par default t'es migrant en false
+			+ "Typ BOOL NOT NULL DEFAULT 'false', " // Par default t'es migrant en false
 			+ "Divers VARCHAR(30), "
 			+ "Dispo BOOL DEFAULT 'false');";
 
 	private static String strCreateEvenementTable = "Create table if not exists Evenement ("
 			+ "Id integer primary key autoincrement,"
 			+ "Lieu varchar(20) NOT NULL,"
-			+ "Date varchar(20) NOT NULL,"
+			+ "Dat varchar(20) NOT NULL,"
 			+ "Description varchar(500) NOT NULL);";
 
 	private static String strCreateBesoinTable = "Create table if not exists Besoin ("
@@ -49,7 +48,7 @@ public class DataBase {
 			+ "Titre varchar(20) NOT NULL,"
 			+ "Description varchar(500) NOT NULL);";
 
-	private static String strCreateForumAIdeesTable = "Create table if not exists members ("
+	private static String strCreateForumAIdeesTable = "Create table if not exists ForumAIdees ("
 			+ "Id integer primary key autoincrement,"
 			+ "Nom varchar(20) NOT NULL,"
 			+ "Description varchar(500) NOT NULL);";
@@ -62,8 +61,7 @@ public class DataBase {
 			+ "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
 			+ "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
 
-	private static String strCreateOrganiseTable =
-			"Create table if not exists Organise ("
+	private static String strCreateOrganiseTable = "Create table if not exists Organise ("
 					+ "Id varchar(20) primary key,"
 					+ "Evenement varchar(30),"
 					+ "Utilisateur varchar(30),"
@@ -95,7 +93,7 @@ public class DataBase {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")
-					+System.getProperty("file.separator")+"prolab.db");
+					+System.getProperty("file.separator")+"kilobits.db");
 			DataBase.c = c;
 			createTable();
 		} catch (Exception e) {
@@ -116,7 +114,8 @@ public class DataBase {
         stmt.executeUpdate(strCreateOrganiseTable);
         stmt.executeUpdate(strCreateUtilisateurTable);
         stmt.executeUpdate(strCreateLangueTable);
-        stmt.executeUpdate(strCreateCategorieTable);
+		System.out.println("done");
+		stmt.executeUpdate(strCreateCategorieTable);
         stmt.executeUpdate(strCreateEvenementTable);
         stmt.executeUpdate(strCreateParticipeTable);
         stmt.executeUpdate(strCreateBesoinTable);
