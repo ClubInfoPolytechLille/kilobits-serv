@@ -14,7 +14,7 @@ public class LangueRequest {
 		ArrayList<Langue> langues = new ArrayList<Langue>();
 		try {
 			Statement stmt = DataBase.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery("Select * from langues");
+			ResultSet rs = stmt.executeQuery("Select * from langue");
 			while (rs.next()) {
 				langues.add(new Langue(
 						rs.getInt("id"),
@@ -26,4 +26,17 @@ public class LangueRequest {
 		}
 		return langues;
 	}
+
+    public static int addLangue(String langue) {
+        String sql = "insert into langue (langue) values (?);";
+        try {
+            PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+            stmt.setString(1, langue);
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println(sql);
+            return -1;
+        }
+    }
 }
