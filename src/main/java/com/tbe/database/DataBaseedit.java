@@ -29,6 +29,7 @@ public class DataBaseedit {
 			+ "Id Integer primary key autoincrement,"
 			+ "Nom varchar(30) NOT NULL, "
 			+ "Prenom varchar(30) NOT NULL, "
+            + "Pseudo varchar(30) NOT NULL, "
 			+ "Mdp varchar(30) NOT NULL DEFAULT '0000', "
 			+ "Ville varchar(30), "
 			+ "EstMobile BOOL NOT NULL DEFAULT 'false', "
