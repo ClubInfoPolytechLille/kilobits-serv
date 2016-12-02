@@ -59,10 +59,26 @@ public class DataBaseedit {
 					+ "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
 
     private static String strCreateOrganiseTable =
-            "Create table if not exists members ("
+            "Create table if not exists Organise ("
                     + "Id varchar(20) primary key,"
                     + "FOREIGN KEY (Evenement) REFERENCES Evenement(Id)"
                     + "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id)";
+
+	private static String strCreateParleTable = "Create table if not exists Parle ("
+			+ "Id Integer primary key autoincrement,"
+			+ "Nom varchar(20) NOT NULL,);";
+
+	private static String strCreateServiceTable = "Create table if not exists Service ("
+			+ "Id Integer primary key autoincrement,"
+			+ "IdCategorie Interger,"
+			+ "IdUtilisateur Interger,"
+			+ "FOREIGN KEY (IdCategorie) REFERENCES Categorie(Id),"
+			+ "FOREIGN KEY (IdUtilisateur) REFERENCES Utilisateur(Id);";
+
+	private static String strCreateMessageTable = "Create table if not exists Message ("
+			+ "Id Integer primary key autoincrement,"
+			+ "Texte txt,"
+			+ "FOREIGN KEY (IdUtilisateur) REFERENCES Utilisateur(Id);";
 
 	public DataBaseedit() {
 		System.out.println("Init BDD...");
@@ -93,6 +109,10 @@ public class DataBaseedit {
 		stmt.executeUpdate(strCreateEvenementTable);
 		stmt.executeUpdate(strCreateParticipeTable);
 		stmt.executeUpdate(strCreateBesoinTable);
+		stmt.executeUpdate(strCreateForumAIdeesTable);
+		stmt.executeUpdate(strCreateParleTable);
+		stmt.executeUpdate(strCreateServiceTable);
+		stmt.executeUpdate(strCreateMessageTable);
 		System.out.println("Init Table Done");
 	}
 
