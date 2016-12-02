@@ -24,4 +24,17 @@ public class LangueREST {
 		return p;
 	}
 
+    @POST
+    public Response postLangue(Langue langue) {
+        // System.out.println("Post Langue\nidFonc:" + langue.getIdFonctionnality() + "\nidMember" + langue.getIdMember());
+        int result = LangueRequest.addLangue(langue.getLangue());
+
+        if (result == -1) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Langue already exist").build();
+        }
+        return Response.status(Response.Status.CREATED)
+                .entity("Langue Created").build();
+    }
+
 }
