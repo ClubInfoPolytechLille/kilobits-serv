@@ -1,38 +1,38 @@
 package com.tbe.database;
 
-import com.tbe.json.Service;
+import com.tbe.json.Organise;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceRequest {
+public class OrganiseRequest {
 
-    public static List<Service> getAllService() {
-        ArrayList<Service> services = new ArrayList<Service>();
+    public static List<Organise> getAllOrganise() {
+        ArrayList<Organise> organises = new ArrayList<Organise>();
         try {
             Statement stmt = DataBase.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from service");
+            ResultSet rs = stmt.executeQuery("Select * from organise");
             while (rs.next()) {
-                services.add(new Service(
+                organises.add(new Organise(
                         rs.getInt("id"),
-                        rs.getString("idcategorie"),
-                        rs.getDate("idutilisateur")
+                        rs.getString("evenement"),
+                        rs.getDate("utilisateur")
                 ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-        return services;
+        return organises;
     }
 
-    public static int addService(String idcategorie, String idutilisateur) {
-        String sql = "insert into service (service) values (?, ?);";
+    public static int addOrganise(String evenement, String utilisateur) {
+        String sql = "insert into organise (organise) values (?, ?);";
         try {
             PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
-            stmt.setString(1, idcategorie);
-            stmt.setString(2, idutilisateur);
+            stmt.setString(1, evenement);
+            stmt.setString(2, utilisateur);
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

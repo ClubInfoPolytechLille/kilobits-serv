@@ -17,7 +17,7 @@ public class MessageRequest {
                 messages.add(new Message(
                         rs.getInt("id"),
                         rs.getString("texte"),
-                        rs.getDate("idutilisateur"),
+                        rs.getDate("idutilisateur")
                 ));
             }
         } catch (SQLException e) {

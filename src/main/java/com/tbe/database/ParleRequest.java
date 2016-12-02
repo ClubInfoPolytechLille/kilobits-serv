@@ -1,38 +1,36 @@
 package com.tbe.database;
 
-import com.tbe.json.Service;
+import com.tbe.json.Parle;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceRequest {
+public class ParleRequest {
 
-    public static List<Service> getAllService() {
-        ArrayList<Service> services = new ArrayList<Service>();
+    public static List<Parle> getAllParle() {
+        ArrayList<Parle> parles = new ArrayList<Parle>();
         try {
             Statement stmt = DataBase.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from service");
+            ResultSet rs = stmt.executeQuery("Select * from parle");
             while (rs.next()) {
-                services.add(new Service(
+                parles.add(new Parle(
                         rs.getInt("id"),
-                        rs.getString("idcategorie"),
-                        rs.getDate("idutilisateur")
+                        rs.getString("nom")
                 ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-        return services;
+        return parles;
     }
 
-    public static int addService(String idcategorie, String idutilisateur) {
-        String sql = "insert into service (service) values (?, ?);";
+    public static int addParle(String nom) {
+        String sql = "insert into parle (parle) values (?);";
         try {
             PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
-            stmt.setString(1, idcategorie);
-            stmt.setString(2, idutilisateur);
+            stmt.setString(1, nom);
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
