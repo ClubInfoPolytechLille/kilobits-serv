@@ -49,7 +49,7 @@ public class DataBase {
 			+ "Titre varchar(20) NOT NULL,"
 			+ "Description varchar(500) NOT NULL);";
 
-	private static String strCreateForumAIdeesTable = "Create table if not exists members ("
+	private static String strCreateForumAIdeesTable = "Create table if not exists ForumAIdees ("
 			+ "Id integer primary key autoincrement,"
 			+ "Nom varchar(20) NOT NULL,"
 			+ "Description varchar(500) NOT NULL);";
@@ -62,8 +62,7 @@ public class DataBase {
 			+ "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
 			+ "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
 
-	private static String strCreateOrganiseTable =
-			"Create table if not exists Organise ("
+	private static String strCreateOrganiseTable = "Create table if not exists Organise ("
 					+ "Id varchar(20) primary key,"
 					+ "Evenement varchar(30),"
 					+ "Utilisateur varchar(30),"
