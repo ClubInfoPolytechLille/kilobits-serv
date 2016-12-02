@@ -58,13 +58,9 @@ public class DataBaseedit {
 
 		stmt = DataBaseedit.c.createStatement();
 
-		stmt.executeUpdate(strCreateUserTable);
-		stmt.executeUpdate(strCreateProjectTable);
-		stmt.executeUpdate(strCreateMembersTable);
-		stmt.executeUpdate(strCreateFonctionnalitiesTable);
-		stmt.executeUpdate(strCreateTask);
-		stmt.executeUpdate(strCreateNewsTable);
-		stmt.executeUpdate(strCreateIndex);
+		stmt.executeUpdate(strCreateLangueTable);
+		stmt.executeUpdate(strCreateCategorieTable);
+		stmt.executeUpdate(strCreateUtilisateurTable);
 		System.out.println("Init Table Done");
 	}
 
