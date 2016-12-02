@@ -14,8 +14,8 @@ public class Launcher extends Application {
 	public Set<Class<?>> getClasses() {
 		new DataBase();
 		Set<Class<?>> s = new HashSet<Class<?>>();
-		s.add(UserREST.class);
 
+		s.add(UserREST.class);
         s.add(LangueREST.class);
 
 		return s;
