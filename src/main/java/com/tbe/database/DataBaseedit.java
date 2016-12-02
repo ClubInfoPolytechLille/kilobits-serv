@@ -51,6 +51,11 @@ public class DataBaseedit {
 					+ "Nom varchar(20) NOT NULL,"
 					+ "Description varchar(500) NOT NULL);";
 
+    private static String strCreateOrganiseTable =
+            "Create table if not exists members ("
+                    + "Id varchar(20) primary key,"
+                    + "FOREIGN KEY (Evenement) REFERENCES Evenement(Id)"
+                    + "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id)";
 	public DataBaseedit() {
 		System.out.println("Init BDD...");
 		Connection c = null;
@@ -73,13 +78,7 @@ public class DataBaseedit {
 
 		stmt = DataBaseedit.c.createStatement();
 
-		stmt.executeUpdate(strCreateUserTable);
-		stmt.executeUpdate(strCreateProjectTable);
-		stmt.executeUpdate(strCreateMembersTable);
-		stmt.executeUpdate(strCreateFonctionnalitiesTable);
-		stmt.executeUpdate(strCreateTask);
-		stmt.executeUpdate(strCreateNewsTable);
-		stmt.executeUpdate(strCreateIndex);
+		stmt.executeUpdate(strCreateOrganiseTable);
 		System.out.println("Init Table Done");
 	}
 
