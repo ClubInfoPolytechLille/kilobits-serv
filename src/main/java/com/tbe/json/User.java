@@ -2,61 +2,89 @@ package com.tbe.json;
 
 public class User {
 	
-	private String username;
-	private String password;
-	private String email;
-	private String firstname;
-	private String lastname;
-	
+	private String pseudo;
+	private String nom;
+	private String prenom;
+	private String mdp;
+	private String ville;
+	private boolean estMobile;
+	private boolean typ;
+	private String divers;
+	private boolean dispo;
+
 	//Must have empty constructor
 	public User(){}
-	
-	public User(String username, String password, String email, String firstname, String lastname){
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.firstname = firstname;
-		this.lastname = lastname;
+
+
+	public String getPseudo() {
+		return pseudo;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public String getNom() {
+		return nom;
 	}
 
-	public String getPassword() {
-		return password;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public String getEmail() {
-		return email;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getMdp() {
+		return mdp;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public String getVille() {
+		return ville;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public boolean isEstMobile() {
+		return estMobile;
 	}
-	
+
+	public void setEstMobile(boolean estMobile) {
+		this.estMobile = estMobile;
+	}
+
+	public boolean isTyp() {
+		return typ;
+	}
+
+	public void setTyp(boolean typ) {
+		this.typ = typ;
+	}
+
+	public String getDivers() {
+		return divers;
+	}
+
+	public void setDivers(String divers) {
+		this.divers = divers;
+	}
+
+	public boolean isDispo() {
+		return dispo;
+	}
+
+	public void setDispo(boolean dispo) {
+		this.dispo = dispo;
+	}
 }
