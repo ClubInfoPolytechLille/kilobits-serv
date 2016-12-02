@@ -27,6 +27,7 @@ public class DataBaseedit {
 
 	private static String strCreateUtilisateurTable= "Create table if not exists Utilisateur ("
 			+ "Id Integer primary key autoincrement,"
+            + "Pseudo varchar(30) NOT NULL, "
 			+ "Nom varchar(30) NOT NULL, "
 			+ "Prenom varchar(30) NOT NULL, "
             + "Pseudo varchar(30) NOT NULL, "
@@ -56,13 +57,17 @@ public class DataBaseedit {
 	private static String strCreateParticipeTable = "Create table if not exists Participe ("
 					+ "Id integer primary key autoincrement,"
 					+ "Nombre int,"
-					+ "FOREIGN KEY (Evenement) REFERENCES Evenement(Id)"
+                    + "Evenement varchar(30),"
+                    + "Utilisateur varchar(30),"
+					+ "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
 					+ "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
 
     private static String strCreateOrganiseTable =
             "Create table if not exists Organise ("
                     + "Id varchar(20) primary key,"
-                    + "FOREIGN KEY (Evenement) REFERENCES Evenement(Id)"
+                    + "Evenement varchar(30),"
+                    + "Utilisateur varchar(30),"
+                    + "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
                     + "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id)";
 
 	private static String strCreateParleTable = "Create table if not exists Parle ("
@@ -71,15 +76,18 @@ public class DataBaseedit {
 
 	private static String strCreateServiceTable = "Create table if not exists Service ("
 			+ "Id Integer primary key autoincrement,"
-			+ "IdCategorie Interger,"
-			+ "IdUtilisateur Interger,"
+			+ "IdCategorie Integer,"
+			+ "IdUtilisateur Integer,"
 			+ "FOREIGN KEY (IdCategorie) REFERENCES Categorie(Id),"
 			+ "FOREIGN KEY (IdUtilisateur) REFERENCES Utilisateur(Id);";
 
 	private static String strCreateMessageTable = "Create table if not exists Message ("
 			+ "Id Integer primary key autoincrement,"
 			+ "Texte txt,"
+            + "IdUtilisateur varchar(30),"
 			+ "FOREIGN KEY (IdUtilisateur) REFERENCES Utilisateur(Id);";
+
+
 
 	public DataBaseedit() {
 		System.out.println("Init BDD...");
@@ -96,6 +104,8 @@ public class DataBaseedit {
 		}
 		System.out.println("Opened database successfully");
 	}
+
+
 
 	private void createTable() throws SQLException {
 		System.out.println("Init Table");
