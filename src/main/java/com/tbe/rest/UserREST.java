@@ -19,7 +19,7 @@ public class UserREST {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("Entity already exist").build();
         }
-        return Response.status(Response.Status.CREATED).entity("News Created")
+        return Response.status(Response.Status.CREATED).entity("User Created")
                 .build();
     }
 
