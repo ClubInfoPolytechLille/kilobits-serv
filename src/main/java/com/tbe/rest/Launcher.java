@@ -23,6 +23,8 @@ public class Launcher extends Application {
 		s.add(ChatREST.class);
 		s.add(NewsREST.class);
 
+        s.add(LangueREST.class);
+
 		return s;
 	}
 }

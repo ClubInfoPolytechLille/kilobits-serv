@@ -15,7 +15,7 @@ public class LangueREST {
 
 	@GET
 	public Langue[] getAllLangues() {
-		System.out.println("GET ALL langues");
+		System.out.println("GET ALL langue");
 		List<Langue> langues = LangueRequest.getAllLangue();
 		Langue[] p = new Langue[langues.size()];
 		for (int i = 0; i < p.length; ++i) {

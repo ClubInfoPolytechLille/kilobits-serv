@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * 
+ *
  * @author badetitou
  *
  */
@@ -16,53 +16,78 @@ public class DataBase {
 	/* STATICS */
 	private static final int MAX_USERNAME_SIZE = 20;
 
-	private static String strCreateUserTable = "Create table if not exists users ("
-			+ "username char("+ MAX_USERNAME_SIZE+ ") primary key, "
-			+ "password char(20), "
-			+ "email text unique, "
-			+ "firstname char(20), "
-			+ "lastname char(20));";
+	private static String strCreateLangueTable = "Create table if not exists Langue ("
+			+ "Id Integer primary key autoincrement, "
+			+ "Langue varchar(20) NOT NULL DEFAULT 'FR');";
 
-	private static String strCreateProjectTable = "Create table if not exists projects ("
-			+ "id Integer primary key autoincrement, "
-			+ "name char(20), "
-			+ "description text, "
-			+ "url char(20) unique not null, "
-			+ "punchline char(50));";
-	
-	private static String strCreateIndex = "Create unique index if not exists duplicata on members (username collate nocase ,idProject collate nocase);";
+	private static String strCreateCategorieTable = "Create table if not exists Categorie ("
+			+ "Id Integer primary key autoincrement,"
+			+ "Nom varchar(20) NOT NULL, "
+			+ "Description text);";
+
+	private static String strCreateUtilisateurTable= "Create table if not exists Utilisateur ("
+			+ "Id Integer primary key autoincrement,"
+			+ "Pseudo varchar(30) NOT NULL, "
+			+ "Nom varchar(30) NOT NULL, "
+			+ "Prenom varchar(30) NOT NULL, "
+			+ "Pseudo varchar(30) NOT NULL, "
+			+ "Mdp varchar(30) NOT NULL DEFAULT '0000', "
+			+ "Ville varchar(30), "
+			+ "EstMobile BOOL NOT NULL DEFAULT 'false', "
+			+ "Type BOOL NOT NULL DEFAULT 'false', " // Par default t'es migrant en false
+			+ "Divers VARCHAR(30), "
+			+ "Dispo BOOL DEFAULT 'false');";
+
+	private static String strCreateEvenementTable = "Create table if not exists Evenement ("
+			+ "Id integer primary key autoincrement,"
+			+ "Lieu varchar(20) NOT NULL,"
+			+ "Date varchar(20) NOT NULL,"
+			+ "Description varchar(500) NOT NULL);";
+
+	private static String strCreateBesoinTable = "Create table if not exists Besoin ("
+			+ "Id integer primary key autoincrement,"
+			+ "Titre varchar(20) NOT NULL,"
+			+ "Description varchar(500) NOT NULL);";
+
+	private static String strCreateForumAIdeesTable = "Create table if not exists members ("
+			+ "Id integer primary key autoincrement,"
+			+ "Nom varchar(20) NOT NULL,"
+			+ "Description varchar(500) NOT NULL);";
+
+	private static String strCreateParticipeTable = "Create table if not exists Participe ("
+			+ "Id integer primary key autoincrement,"
+			+ "Nombre int,"
+			+ "Evenement varchar(30),"
+			+ "Utilisateur varchar(30),"
+			+ "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
+			+ "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
+
+	private static String strCreateOrganiseTable =
+			"Create table if not exists Organise ("
+					+ "Id varchar(20) primary key,"
+					+ "Evenement varchar(30),"
+					+ "Utilisateur varchar(30),"
+					+ "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
+					+ "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
+
+	private static String strCreateParleTable = "Create table if not exists Parle ("
+			+ "Id Integer primary key autoincrement,"
+			+ "Nom varchar(20) NOT NULL);";
+
+	private static String strCreateServiceTable = "Create table if not exists Service ("
+			+ "Id Integer primary key autoincrement,"
+			+ "IdCategorie Integer,"
+			+ "IdUtilisateur Integer,"
+			+ "FOREIGN KEY (IdCategorie) REFERENCES Categorie(Id),"
+			+ "FOREIGN KEY (IdUtilisateur) REFERENCES Utilisateur(Id));";
+
+	private static String strCreateMessageTable = "Create table if not exists Message ("
+			+ "Id Integer primary key autoincrement,"
+			+ "Texte txt,"
+			+ "IdUtilisateur varchar(30),"
+			+ "FOREIGN KEY (IdUtilisateur) REFERENCES Utilisateur(Id));";
 
 
-	private static String strCreateMembersTable = 
-			  "Create table if not exists members ("
-			+ "idMember integer primary key autoincrement, "
-			+ "username char("+ MAX_USERNAME_SIZE+ "), "
-			+ "idProject integer,"
-			+ "role integer, "
-			+ "foreign key (username) references users(username) ON DELETE CASCADE ON UPDATE CASCADE,"
-			+ "foreign key (idProject) references projects(id) ON DELETE CASCADE ON UPDATE CASCADE)";
-
-	private static String strCreateFonctionnalitiesTable = "Create table if not exists fonctionnalities ("
-			+ "id Integer primary key autoincrement, "
-			+ "name char("+ MAX_USERNAME_SIZE+ "), "
-			+ "description text, "
-			+ "avancement int, "
-			+ "deadline date, "
-			+ "foreign key (name) references users(username) ON DELETE CASCADE ON UPDATE CASCADE)";
-
-	private static String strCreateNewsTable = "Create table if not exists news ("
-			+ "id Integer primary key autoincrement, "
-			+ "title char("+ 20+ "), "
-			+ "description text, "
-			+ "date date, "
-			+ "author char("+ MAX_USERNAME_SIZE+ "),"
-			+ "foreign key (author) references users(username) ON DELETE CASCADE ON UPDATE CASCADE)";
-
-	private static String strCreateTask = "Create table if not exists tasks ("
-			+ "fonctionnality Integer not null," + 
-			 " idMember Integer not null,"
-			+ "foreign key (fonctionnality) references fonctionnalities(id) ON DELETE CASCADE ON UPDATE CASCADE,"
-			+ "primary key(fonctionnality, idMember));";
 
 	public DataBase() {
 		System.out.println("Init BDD...");
@@ -70,7 +95,7 @@ public class DataBase {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")
-							+System.getProperty("file.separator")+"prolab.db");
+					+System.getProperty("file.separator")+"prolab.db");
 			DataBase.c = c;
 			createTable();
 		} catch (Exception e) {
@@ -80,19 +105,25 @@ public class DataBase {
 		System.out.println("Opened database successfully");
 	}
 
+
+
 	private void createTable() throws SQLException {
 		System.out.println("Init Table");
 		Statement stmt;
 
 		stmt = DataBase.c.createStatement();
 
-		stmt.executeUpdate(strCreateUserTable);
-		stmt.executeUpdate(strCreateProjectTable);
-		stmt.executeUpdate(strCreateMembersTable);
-		stmt.executeUpdate(strCreateFonctionnalitiesTable);
-		stmt.executeUpdate(strCreateTask);
-		stmt.executeUpdate(strCreateNewsTable);
-		stmt.executeUpdate(strCreateIndex);
+        stmt.executeUpdate(strCreateOrganiseTable);
+        stmt.executeUpdate(strCreateUtilisateurTable);
+        stmt.executeUpdate(strCreateLangueTable);
+        stmt.executeUpdate(strCreateCategorieTable);
+        stmt.executeUpdate(strCreateEvenementTable);
+        stmt.executeUpdate(strCreateParticipeTable);
+        stmt.executeUpdate(strCreateBesoinTable);
+        stmt.executeUpdate(strCreateForumAIdeesTable);
+        stmt.executeUpdate(strCreateParleTable);
+        stmt.executeUpdate(strCreateServiceTable);
+        stmt.executeUpdate(strCreateMessageTable);
 		System.out.println("Init Table Done");
 	}
 
