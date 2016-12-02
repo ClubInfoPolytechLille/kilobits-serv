@@ -37,25 +37,33 @@ public class DataBaseedit {
 			+ "Dispo BOOL DEFAULT 'false');";
 
 	private static String strCreateEvenementTable = "Create table if not exists Evenement ("
-			+ "Id varchar(20) primary key,"
+			+ "Id integer primary key autoincrement,"
 			+ "Lieu varchar(20) NOT NULL,"
 			+ "Date varchar(20) NOT NULL,"
 			+ "Description varchar(500) NOT NULL);";
+
 	private static String strCreateBesoinTable = "Create table if not exists Besoin ("
-			+ "Id varchar(20) primary key,"
+			+ "Id integer primary key autoincrement,"
 			+ "Titre varchar(20) NOT NULL,"
 			+ "Description varchar(500) NOT NULL);";
-	private static String strCreateForumAIdeesTable =
-			"Create table if not exists members ("
-					+ "Id varchar(20) primary key,"
+
+	private static String strCreateForumAIdeesTable = "Create table if not exists members ("
+					+ "Id integer primary key autoincrement,"
 					+ "Nom varchar(20) NOT NULL,"
 					+ "Description varchar(500) NOT NULL);";
+
+	private static String strCreateParticipeTable = "Create table if not exists Participe ("
+					+ "Id integer primary key autoincrement,"
+					+ "Nombre int,"
+					+ "FOREIGN KEY (Evenement) REFERENCES Evenement(Id)"
+					+ "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
 
     private static String strCreateOrganiseTable =
             "Create table if not exists members ("
                     + "Id varchar(20) primary key,"
                     + "FOREIGN KEY (Evenement) REFERENCES Evenement(Id)"
                     + "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id)";
+
 	public DataBaseedit() {
 		System.out.println("Init BDD...");
 		Connection c = null;
@@ -79,6 +87,12 @@ public class DataBaseedit {
 		stmt = DataBaseedit.c.createStatement();
 
 		stmt.executeUpdate(strCreateOrganiseTable);
+		stmt.executeUpdate(strCreateUtilisateurTable);
+		stmt.executeUpdate(strCreateLangueTable);
+		stmt.executeUpdate(strCreateCategorieTable);
+		stmt.executeUpdate(strCreateEvenementTable);
+		stmt.executeUpdate(strCreateParticipeTable);
+		stmt.executeUpdate(strCreateBesoinTable);
 		System.out.println("Init Table Done");
 	}
 
