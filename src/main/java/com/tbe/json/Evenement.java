@@ -6,6 +6,7 @@ public class Evenement {
 
 	private int id;
 	private String lieu;
+	private Date dat;
 	private String description;
 
 	public Evenement(int id, String lieu, Date dat, String description) {
@@ -36,8 +37,8 @@ public class Evenement {
 		this.lieu = lieu;
 	}
 
-	public String getDat() {
-		return dat;
+	public Date getDat() {
+		return this.dat;
 	}
 
 	public void setDat(Date dat) {

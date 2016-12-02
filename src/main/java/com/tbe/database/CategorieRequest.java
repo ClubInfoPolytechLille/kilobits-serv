@@ -17,7 +17,7 @@ public class CategorieRequest {
                 categories.add(new Categorie(
                         rs.getInt("id"),
                         rs.getString("nom"),
-                        rs.getDate("description")
+                        rs.getString("description")
                 ));
             }
         } catch (SQLException e) {

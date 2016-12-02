@@ -17,7 +17,7 @@ public class OrganiseRequest {
                 organises.add(new Organise(
                         rs.getInt("id"),
                         rs.getString("evenement"),
-                        rs.getDate("utilisateur")
+                        rs.getString("utilisateur")
                 ));
             }
         } catch (SQLException e) {

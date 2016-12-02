@@ -28,7 +28,7 @@ public class ParticipeRequest {
         return participes;
     }
 
-    public static int addParticipe(Int nombre, String evenement, String utilisateur ) {
+    public static int addParticipe(int nombre, String evenement, String utilisateur ) {
         String sql = "insert into participe (participe) values (?, ?, ?);";
         try {
             PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);

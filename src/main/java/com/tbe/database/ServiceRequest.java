@@ -17,7 +17,7 @@ public class ServiceRequest {
                 services.add(new Service(
                         rs.getInt("id"),
                         rs.getString("idcategorie"),
-                        rs.getDate("idutilisateur")
+                        rs.getString("idutilisateur")
                 ));
             }
         } catch (SQLException e) {

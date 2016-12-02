@@ -48,7 +48,8 @@ public class UsersRequest {
                 user.setTyp(rs.getBoolean("Typ"));
                 return user;
             } else {
-                return false;
+                user = new User();
+                return user;
             }
         } catch (SQLException e) {
             e.printStackTrace();

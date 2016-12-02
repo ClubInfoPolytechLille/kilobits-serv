@@ -17,7 +17,7 @@ public class MessageRequest {
                 messages.add(new Message(
                         rs.getInt("id"),
                         rs.getString("texte"),
-                        rs.getDate("idutilisateur")
+                        rs.getInt("idutilisateur")
                 ));
             }
         } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class MessageRequest {
         try {
             PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
             stmt.setString(1, texte);
-            stmt.setDate(2, idutilisateur);
+            stmt.setString(2, idutilisateur);
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
