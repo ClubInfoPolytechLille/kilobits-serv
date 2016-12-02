@@ -1,2 +1,2 @@
-# ProLab-Serv
-Use this website to manage your Project with github.
+# Kilobits - ? 
+This project contains a web application. 
