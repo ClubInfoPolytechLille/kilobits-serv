@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ProLab-Serv.iml" filepath="$PROJECT_DIR$/ProLab-Serv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kilobits.iml" filepath="$PROJECT_DIR$/Kilobits.iml" />
     </modules>
   </component>
 </project>
