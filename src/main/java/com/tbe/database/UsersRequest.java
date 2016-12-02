@@ -4,6 +4,7 @@ package com.tbe.database;
 import com.tbe.json.User;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsersRequest {
@@ -33,4 +34,25 @@ public class UsersRequest {
         }
         return "ok";
 	}
+
+	public static User connectUser(User user) {
+        String sql = "SELECT (pseudo, nom, prenom, ville, EstMobile, Typ, Divers, Dispo) FROM utilisateur WHERE pseudo = ? AND mdp = ?";
+        try {
+            PreparedStatement stmt = DataBase.getConnection().prepareStatement(sql);
+            stmt.setString(1, user.getPseudo());
+            stmt.setString(2, user.getMdp());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                user = new User();
+                user.setPseudo(rs.getString("pseudo"));
+                user.setTyp(rs.getBoolean("Typ"));
+                return user;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -23,4 +23,10 @@ public class UserREST {
                 .build();
     }
 
+    @POST("/connect")
+    public Response connectUser(User user){
+        System.out.println("Connect user");
+        return UsersRequest.connectUser(user);
+    }
+
 }
