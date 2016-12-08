@@ -1,30 +1,28 @@
 package com.tbe.rest;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import com.sun.org.apache.regexp.internal.RE;
 import com.tbe.database.UsersRequest;
 import com.tbe.json.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Path("/users")
+@RestController
+@RequestMapping("/user")
 public class UserREST {
 
-    @POST
-    public Response createUser(User user){
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity createUser(User user) {
         System.out.println("Post User");
         String result = UsersRequest.addUser(user);
         if (result == null) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Entity already exist").build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return Response.status(Response.Status.CREATED).entity("User Created")
-                .build();
+        return ResponseEntity.ok().body(null);
     }
 
-    @POST
-    @Path("/connect")
+    @RequestMapping(value = "/connect", method = RequestMethod.POST)
     public User connectUser(User user){
         System.out.println("Connect user");
         return UsersRequest.connectUser(user);

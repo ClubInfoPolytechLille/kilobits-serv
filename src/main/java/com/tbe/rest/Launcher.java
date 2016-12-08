@@ -1,25 +1,14 @@
 package com.tbe.rest;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-
 import com.tbe.database.DataBase;
-import com.tbe.json.Evenement;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@ApplicationPath("/v1/")
-public class Launcher extends Application {
+@SpringBootApplication
+public class Launcher {
 
-	public Set<Class<?>> getClasses() {
-		new DataBase();
-		Set<Class<?>> s = new HashSet<Class<?>>();
-
-		s.add(UserREST.class);
-        s.add(LangueREST.class);
-        s.add(EvenementREST.class);
-
-		return s;
+    public static void main(String[] args) {
+        SpringApplication.run(Launcher.class);
+        new DataBase();
 	}
 }

@@ -2,16 +2,20 @@ package com.tbe.rest;
 
 import com.tbe.database.LangueRequest;
 import com.tbe.json.Langue;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/langues")
+@RestController
+@RequestMapping("/langues")
 public class LangueREST {
 
-	@GET
-	public Langue[] getAllLangues() {
+    @RequestMapping(method = RequestMethod.GET)
+    public Langue[] getAllLangues() {
 		System.out.println("GET ALL langue");
 		List<Langue> langues = LangueRequest.getAllLangue();
 		Langue[] p = new Langue[langues.size()];
@@ -21,17 +25,15 @@ public class LangueREST {
 		return p;
 	}
 
-    @POST
-    public Response postLangue(Langue langue) {
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<String> postLangue(Langue langue) {
         // System.out.println("Post Langue\nidFonc:" + langue.getIdFonctionnality() + "\nidMember" + langue.getIdMember());
         int result = LangueRequest.addLangue(langue.getLangue());
 
         if (result == -1) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Langue already exist").build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return Response.status(Response.Status.CREATED)
-                .entity("Langue Created").build();
+        return ResponseEntity.ok().body(null);
     }
 
 }
