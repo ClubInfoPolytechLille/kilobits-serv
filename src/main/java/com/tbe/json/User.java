@@ -1,6 +1,8 @@
 package com.tbe.json;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 	
 	private String pseudo;
 	private String nom;
@@ -15,6 +17,17 @@ public class User {
 	//Must have empty constructor
 	public User(){}
 
+	public User(String pseudo, String nom, String prenom, String mdp, String ville, boolean estMobile, boolean typ, String divers, boolean dispo) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mdp = mdp;
+		this.ville = ville;
+		this.estMobile = estMobile;
+		this.typ = typ;
+		this.divers = divers;
+		this.dispo = dispo;
+	}
 
 	public String getPseudo() {
 		return pseudo;
