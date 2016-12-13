@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <!--<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"> -->
+    <link rel="stylesheet" href="css/material.css">
+
+</head>
+<body>
+<header class="mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Kilobits</span>
+        <!-- Separator -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Nav -->
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="login.html">Se connecter</a>
+            <a class="mdl-navigation__link" href="register.html">Creer un compte</a>
+        </nav>
+    </div>
+</header>
+<main class="mdl-layout__content">
+    <ul class="mdl-list">
+        <form action="#">
+            <li class="mdl-list__item">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="pseudo">
+                    <label class="mdl-textfield__label" for="pseudo">Pseudo</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="prenom">
+                    <label class="mdl-textfield__label" for="prenom">Prenom</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="nom">
+                    <label class="mdl-textfield__label" for="nom">Nom</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="password" id="password">
+                    <label class="mdl-textfield__label" for="password">Password</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="ville">
+                    <label class="mdl-textfield__label" for="ville">Ville</label>
+                </div>
+            </li>
+            <li class="mdl-list__item">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="estmobile">
+                    <input type="checkbox" id="estmobile" class="mdl-switch__input">
+                    <span class="mdl-switch__label">estMobile</span>
+                </label>
+            </li>
+            <li class="mdl-list__item">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="migrant">
+                    <input type="checkbox" id="migrant" class="mdl-switch__input">
+                    <span class="mdl-switch__label">Migrant</span>
+                </label>
+            </li>
+            <li class="mdl-list__item">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="disponnible">
+                    <input type="checkbox" id="disponnible" class="mdl-switch__input">
+                    <span class="mdl-switch__label">Disponnible</span>
+                </label>
+            </li>
+            <li class="mdl-list__item">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <textarea class="mdl-textfield__input" type="text" rows="3" id="divers"></textarea>
+                    <label class="mdl-textfield__label" for="divers">Divers</label>
+                </div>
+            </li>
+        </form>
+    </ul>
+</main>
+
+<footer>
+
+</footer>
+</body>
+</html>

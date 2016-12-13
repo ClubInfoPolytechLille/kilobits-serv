@@ -20,6 +20,7 @@ public class LangueREST {
     public LangueREST() throws SQLException {
         if (!Launcher.tableExist("langue")) {
             dao.createLangueTable();
+            dao.addLangue("Français");
         }
 
     }
