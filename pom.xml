@@ -19,15 +19,7 @@
     </parent>
 
     <build>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.3.0.M1</version>
-				<configuration>
-					<scanIntervalSeconds>5</scanIntervalSeconds>
-				</configuration>
-			</plugin>
+        <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

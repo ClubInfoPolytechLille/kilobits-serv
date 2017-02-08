@@ -32,7 +32,7 @@ public interface UserDao {
     List<User> getAllUser();
 
     @SqlUpdate("Insert into utilisateur(pseudo, nom, prenom, mdp, ville, EstMobile, Typ, Divers, Dispo) " +
-            "values ( :user.pseudo, :user.nom, :user.prenom, :user.mdp, :user.ville, :user.estMobite, " +
+            "values ( :user.pseudo, :user.nom, :user.prenom, :user.mdp, :user.ville, :user.estMobile, " +
             ":user.typ, :user.divers, :user.dispo)")
     @RegisterMapperFactory(BeanMapperFactory.class)
     String addUser(@BindBean("user") User user);
