@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="kilobits.db" uuid="aaced143-29c4-4079-893d-bf79f77b973e">
+    <data-source source="LOCAL" name="kilobits.db" uuid="3f194a8c-7beb-417f-93c6-540375fec9a2">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$USER_HOME$/AppData/Local/Temp/kilobits.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:/tmp/kilobits.db</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
     </data-source>
   </component>
 </project>

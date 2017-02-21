@@ -38,7 +38,7 @@ public interface UserDao {
     String addUser(@BindBean("user") User user);
 
 
-    @SqlQuery("SELECT pseudo, Typ FROM utilisateur WHERE pseudo = :user.pseudo AND mdp = :user.mdp")
+    @SqlQuery("SELECT * FROM utilisateur WHERE pseudo = :user.pseudo AND mdp = :user.mdp")
     @RegisterMapperFactory(BeanMapperFactory.class)
     User connectUser(@BindBean("user") User user);
 

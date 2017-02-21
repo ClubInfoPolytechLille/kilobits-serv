@@ -1,6 +1,10 @@
 package com.tbe.json;
 
+
+import org.springframework.context.annotation.Bean;
+
 import java.io.Serializable;
+
 
 public class User implements Serializable {
 	
@@ -15,7 +19,7 @@ public class User implements Serializable {
 	private boolean dispo;
 
 	//Must have empty constructor
-	public User(){}
+    public User(){}
 
 	public User(String pseudo, String nom, String prenom, String mdp, String ville, boolean estMobile, boolean typ, String divers, boolean dispo) {
 		this.pseudo = pseudo;
