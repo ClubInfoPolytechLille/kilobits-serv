@@ -16,7 +16,7 @@ import java.util.List;
 public interface VilleDao {
 
     String strCreateVilleTable = "Create table if not exists ville ("
-            + "id Integer primary key autoincrement,"
+            + "id Integer primary key auto_increment,"
             + "name varchar(30) NOT NULL);";
 
     @SqlUpdate(strCreateVilleTable)

@@ -13,7 +13,7 @@ import java.util.List;
 public interface ForumAIdeesDao {
 
     String strCreateForumAIdeesTable = "Create table if not exists ForumAIdees ("
-            + "Id integer primary key autoincrement,"
+            + "Id integer primary key auto_increment,"
             + "Nom varchar(20) NOT NULL,"
             + "Description varchar(500) NOT NULL);";
 

@@ -14,7 +14,7 @@ public interface BesoinDao {
 
 
     String strCreateBesoinTable = "Create table if not exists Besoin ("
-            + "Id integer primary key autoincrement,"
+            + "Id integer primary key auto_increment,"
             + "Titre varchar(20) NOT NULL,"
             + "Description varchar(500) NOT NULL);";
 

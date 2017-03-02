@@ -13,7 +13,7 @@ import java.util.List;
 public interface ServiceDao {
 
     String strCreateServiceTable = "Create table if not exists Service ("
-            + "Id Integer primary key autoincrement,"
+            + "Id Integer primary key auto_increment,"
             + "IdCategorie Integer,"
             + "IdUtilisateur Integer,"
             + "FOREIGN KEY (IdCategorie) REFERENCES Categorie(Id),"

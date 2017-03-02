@@ -14,7 +14,7 @@ import java.util.List;
 public interface EvenementDao {
 
     String strCreateEvenementTable = "Create table if not exists Evenement ("
-            + "Id integer primary key autoincrement,"
+            + "Id integer primary key auto_increment,"
             + "Lieu varchar(20) NOT NULL,"
             + "Dat varchar(20) NOT NULL,"
             + "Description varchar(500) NOT NULL);";

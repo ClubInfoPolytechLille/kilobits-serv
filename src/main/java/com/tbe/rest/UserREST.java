@@ -38,8 +38,8 @@ public class UserREST {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createUser(@RequestBody User user) {
         System.out.println("Post User");
-        String result = dao.addUser(user);
-        if (result == null) {
+        int result = dao.addUser(user);
+        if (result == 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
         return ResponseEntity.ok().body(null);

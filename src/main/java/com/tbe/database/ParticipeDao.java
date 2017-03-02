@@ -13,7 +13,7 @@ import java.util.List;
 public interface ParticipeDao {
 
     String strCreateParticipeTable = "Create table if not exists Participe ("
-            + "Id integer primary key autoincrement,"
+            + "Id integer primary key auto_increment,"
             + "Nombre int,"
             + "Evenement varchar(30),"
             + "Utilisateur varchar(30),"

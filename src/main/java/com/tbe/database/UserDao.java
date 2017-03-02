@@ -13,7 +13,7 @@ import java.util.List;
 public interface UserDao {
 
     String strCreateUtilisateurTable = "Create table if not exists utilisateur ("
-            + "id Integer primary key autoincrement,"
+            + "id Integer primary key auto_increment,"
             + "pseudo varchar(30) NOT NULL, "
             + "nom varchar(30) NOT NULL, "
             + "prenom varchar(30) NOT NULL, "
@@ -36,7 +36,7 @@ public interface UserDao {
             "values ( :pseudo, :nom, :prenom, :mdp, :ville, :estMobile, " +
             ":typ, :divers, :dispo)")
     @RegisterMapperFactory(BeanMapperFactory.class)
-    String addUser(@BindBean User user);
+    int addUser(@BindBean User user);
 
 
     @SqlQuery("SELECT * FROM utilisateur WHERE pseudo = :user.pseudo AND mdp = :user.mdp")

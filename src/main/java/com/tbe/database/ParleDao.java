@@ -13,7 +13,7 @@ import java.util.List;
 public interface ParleDao {
 
     String strCreateParleTable = "Create table if not exists Parle ("
-            + "Id Integer primary key autoincrement,"
+            + "Id Integer primary key auto_increment,"
             + "Nom varchar(20) NOT NULL);";
 
     @SqlUpdate(strCreateParleTable)

@@ -13,7 +13,7 @@ import java.util.List;
 public interface MessageDao {
 
     String strCreateMessageTable = "Create table if not exists Message ("
-            + "Id Integer primary key autoincrement,"
+            + "Id Integer primary key auto_increment,"
             + "Texte txt,"
             + "IdUtilisateur varchar(30),"
             + "FOREIGN KEY (IdUtilisateur) REFERENCES Utilisateur(Id));";

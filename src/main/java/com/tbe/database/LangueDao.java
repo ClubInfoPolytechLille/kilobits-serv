@@ -13,7 +13,7 @@ import java.util.List;
 public interface LangueDao {
 
 	String strCreateLangueTable = "Create table if not exists Langue ("
-			+ "Id Integer primary key autoincrement, "
+			+ "Id Integer primary key auto_increment, "
 			+ "Langue varchar(20) NOT NULL DEFAULT 'FR');";
 
 	@SqlUpdate(strCreateLangueTable)
