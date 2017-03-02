@@ -1,18 +1,17 @@
 package com.tbe.json;
 
 
-import org.springframework.context.annotation.Bean;
-
 import java.io.Serializable;
 
 
 public class User implements Serializable {
-	
+
+    private int id;
 	private String pseudo;
 	private String nom;
 	private String prenom;
 	private String mdp;
-	private String ville;
+	private int ville;
 	private boolean estMobile;
 	private boolean typ;
 	private String divers;
@@ -21,7 +20,7 @@ public class User implements Serializable {
 	//Must have empty constructor
     public User(){}
 
-	public User(String pseudo, String nom, String prenom, String mdp, String ville, boolean estMobile, boolean typ, String divers, boolean dispo) {
+	public User(String pseudo, String nom, String prenom, String mdp, int ville, boolean estMobile, boolean typ, String divers, boolean dispo) {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -33,75 +32,83 @@ public class User implements Serializable {
 		this.dispo = dispo;
 	}
 
-	public String getPseudo() {
-		return pseudo;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getNom() {
-		return nom;
-	}
+    public String getPseudo() {
+        return pseudo;
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
 
-	public String getPrenom() {
-		return prenom;
-	}
+    public String getNom() {
+        return nom;
+    }
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-	public String getMdp() {
-		return mdp;
-	}
+    public String getPrenom() {
+        return prenom;
+    }
 
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 
-	public String getVille() {
-		return ville;
-	}
+    public String getMdp() {
+        return mdp;
+    }
 
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
 
-	public boolean isEstMobile() {
-		return estMobile;
-	}
+    public int getVille() {
+        return ville;
+    }
 
-	public void setEstMobile(boolean estMobile) {
-		this.estMobile = estMobile;
-	}
+    public void setVille(int ville) {
+        this.ville = ville;
+    }
 
-	public boolean isTyp() {
-		return typ;
-	}
+    public boolean isEstMobile() {
+        return estMobile;
+    }
 
-	public void setTyp(boolean typ) {
-		this.typ = typ;
-	}
+    public void setEstMobile(boolean estMobile) {
+        this.estMobile = estMobile;
+    }
 
-	public String getDivers() {
-		return divers;
-	}
+    public boolean isTyp() {
+        return typ;
+    }
 
-	public void setDivers(String divers) {
-		this.divers = divers;
-	}
+    public void setTyp(boolean typ) {
+        this.typ = typ;
+    }
 
-	public boolean isDispo() {
-		return dispo;
-	}
+    public String getDivers() {
+        return divers;
+    }
 
-	public void setDispo(boolean dispo) {
-		this.dispo = dispo;
-	}
+    public void setDivers(String divers) {
+        this.divers = divers;
+    }
+
+    public boolean isDispo() {
+        return dispo;
+    }
+
+    public void setDispo(boolean dispo) {
+        this.dispo = dispo;
+    }
 }

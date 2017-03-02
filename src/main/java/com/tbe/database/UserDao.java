@@ -12,17 +12,18 @@ import java.util.List;
 
 public interface UserDao {
 
-    String strCreateUtilisateurTable = "Create table if not exists Utilisateur ("
-            + "Id Integer primary key autoincrement,"
-            + "Pseudo varchar(30) NOT NULL, "
-            + "Nom varchar(30) NOT NULL, "
-            + "Prenom varchar(30) NOT NULL, "
-            + "Mdp varchar(30) NOT NULL DEFAULT '0000', "
-            + "Ville varchar(30), "
-            + "EstMobile BOOL NOT NULL DEFAULT 'false', "
-            + "Typ BOOL NOT NULL DEFAULT 'false', " // Par default t'es migrant en false
-            + "Divers VARCHAR(30), "
-            + "Dispo BOOL DEFAULT 'false');";
+    String strCreateUtilisateurTable = "Create table if not exists utilisateur ("
+            + "id Integer primary key autoincrement,"
+            + "pseudo varchar(30) NOT NULL, "
+            + "nom varchar(30) NOT NULL, "
+            + "prenom varchar(30) NOT NULL, "
+            + "mdp varchar(30) NOT NULL DEFAULT '0000', "
+            + "ville INTEGER, "
+            + "estMobile BOOL NOT NULL DEFAULT 'false', "
+            + "typ BOOL NOT NULL DEFAULT 'false', "
+            + "divers VARCHAR(30), "
+            + "dispo BOOL DEFAULT 'false',"
+            + "FOREIGN KEY (ville) REFERENCES ville(id) );";
 
     @SqlUpdate(strCreateUtilisateurTable)
     void createUserTable();
@@ -31,11 +32,11 @@ public interface UserDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
     List<User> getAllUser();
 
-    @SqlUpdate("Insert into utilisateur(pseudo, nom, prenom, mdp, ville, EstMobile, Typ, Divers, Dispo) " +
-            "values ( :user.pseudo, :user.nom, :user.prenom, :user.mdp, :user.ville, :user.estMobile, " +
-            ":user.typ, :user.divers, :user.dispo)")
+    @SqlUpdate("Insert into utilisateur(pseudo, nom, prenom, mdp, ville, estMobile, typ, divers, dispo) " +
+            "values ( :pseudo, :nom, :prenom, :mdp, :ville, :estMobile, " +
+            ":typ, :divers, :dispo)")
     @RegisterMapperFactory(BeanMapperFactory.class)
-    String addUser(@BindBean("user") User user);
+    String addUser(@BindBean User user);
 
 
     @SqlQuery("SELECT * FROM utilisateur WHERE pseudo = :user.pseudo AND mdp = :user.mdp")

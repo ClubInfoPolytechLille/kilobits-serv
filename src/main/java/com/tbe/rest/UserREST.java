@@ -2,11 +2,12 @@ package com.tbe.rest;
 
 import com.tbe.database.UserDao;
 import com.tbe.json.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,13 +19,14 @@ public class UserREST {
     private UserDao dao = Launcher.getDbi().open(UserDao.class);
 
     public UserREST() throws SQLException{
+        new VilleREST();
         if (!Launcher.tableExist("utilisateur")) {
             dao.createUserTable();
             dao.addUser(
-                    new User("badetitou", "Verhaeghe", "Benoit", "unicorn", "lezennes"
-            , true, true, "Team Leader", true));
-        }
+                    new User("badetitou", "Verhaeghe", "Benoit", "unicorn", 1
+            , true, true, "Hello World", true));
 
+        }
     }
 
     //CARE THIS IS FOR TESTING

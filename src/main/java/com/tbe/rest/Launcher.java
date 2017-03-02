@@ -24,7 +24,7 @@ public class Launcher extends WebMvcConfigurerAdapter {
     static DBI getDbi() {
         if(dbi == null) {
             SQLiteDataSource ds = new SQLiteDataSource();
-            ds.setUrl("jdbc:sqlite:"+"kilobits.db");
+            ds.setUrl("jdbc:sqlite:" + "kilobits.db");
             dbi = new DBI(ds);
         }
         return dbi;
