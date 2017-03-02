@@ -4,7 +4,6 @@ import org.skife.jdbi.v2.DBI;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.sqlite.SQLiteDataSource;
 
@@ -25,8 +24,7 @@ public class Launcher extends WebMvcConfigurerAdapter {
     static DBI getDbi() {
         if(dbi == null) {
             SQLiteDataSource ds = new SQLiteDataSource();
-            ds.setUrl("jdbc:sqlite:"+System.getProperty("java.io.tmpdir")
-                    +System.getProperty("file.separator")+"kilobits.db");
+            ds.setUrl("jdbc:sqlite:"+"kilobits.db");
             dbi = new DBI(ds);
         }
         return dbi;

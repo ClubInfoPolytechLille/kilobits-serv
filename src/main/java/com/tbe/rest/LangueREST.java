@@ -21,6 +21,7 @@ public class LangueREST {
         if (!Launcher.tableExist("langue")) {
             dao.createLangueTable();
             dao.addLangue("Français");
+            dao.addLangue("English");
         }
 
     }
