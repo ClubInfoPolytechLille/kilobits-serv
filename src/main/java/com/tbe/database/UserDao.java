@@ -2,6 +2,7 @@ package com.tbe.database;
 
 
 import com.tbe.json.User;
+import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
@@ -43,4 +44,7 @@ public interface UserDao {
     @RegisterMapperFactory(BeanMapperFactory.class)
     User connectUser(@BindBean("user") User user);
 
+    @SqlUpdate("DELETE FROM utilisateur WHERE id = :id")
+    @RegisterMapperFactory(BeanMapperFactory.class)
+    int remove(@Bind("id") int id);
 }

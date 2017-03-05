@@ -4,10 +4,7 @@ import com.tbe.database.UserDao;
 import com.tbe.json.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -33,6 +30,16 @@ public class UserREST {
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getAllUser(){
         return dao.getAllUser();
+    }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity removeUser(@PathVariable int id) {
+        System.out.println("Remove User");
+        int result = dao.remove(id);
+        if (result == 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return ResponseEntity.ok().body(null);
     }
 
     @RequestMapping(method = RequestMethod.POST)
