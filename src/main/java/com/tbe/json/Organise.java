@@ -2,25 +2,30 @@ package com.tbe.json;
 
 public class Organise {
 
-	private int id;
-	private String evenement;
-	private String utilisateur;
+    private int evenement;
+    private int utilisateur;
 
-	public Organise(int id, String evenement, String utilisateur) {
-		this.id = id;
-		this.evenement = evenement;
-		this.utilisateur = utilisateur;
-	}
+    public Organise(int evenement, int utilisateur) {
+        this.evenement = evenement;
+        this.utilisateur = utilisateur;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Organise() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getEvenement() {
+        return evenement;
+    }
 
-	public Organise() {
+    public void setEvenement(int evenement) {
+        this.evenement = evenement;
+    }
 
-	}
+    public int getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(int utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 }

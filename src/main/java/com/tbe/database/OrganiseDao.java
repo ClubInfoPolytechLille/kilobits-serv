@@ -13,11 +13,11 @@ import java.util.List;
 public interface OrganiseDao {
 
     String strCreateOrganiseTable = "Create table if not exists Organise ("
-            + "Id varchar(20) primary key,"
-            + "Evenement varchar(30),"
-            + "Utilisateur varchar(30),"
-            + "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
-            + "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
+            + "evenement integer,"
+            + "utilisateur integer," +
+            "Primary key (evenement, utilisateur),"
+            + "FOREIGN KEY (evenement) REFERENCES evenement(Id),"
+            + "FOREIGN KEY (utilisateur) REFERENCES utilisateur(Id));";
 
     @SqlUpdate(strCreateOrganiseTable)
     void createOrganiseTable();
@@ -28,5 +28,11 @@ public interface OrganiseDao {
 
     @SqlUpdate("Insert into organise (evenement, utilisateur) values (:evenement, :utilisateur)")
     @GetGeneratedKeys
-    int addOrganise(@Bind("evenements") String evenement,@Bind("utilisateur") String utilisateur);
+    int addOrganise(@Bind("evenements") int evenement,@Bind("utilisateur") int utilisateur);
+
+    @SqlUpdate("Delete from organise where evenement=:evenement and utilisateur=:utilisateur")
+    int deleteOrganise(@Bind("evenement") int evenement,@Bind("utilisateur") int utilisateur);
+
+    @SqlQuery("Select * from organise where utilisateur=user and evenement=event")
+    Organise getOrganise(@Bind("user") int user,@Bind("event") int event);
 }

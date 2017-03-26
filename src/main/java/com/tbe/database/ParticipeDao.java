@@ -15,8 +15,8 @@ public interface ParticipeDao {
     String strCreateParticipeTable = "Create table if not exists Participe ("
             + "Id integer primary key auto_increment,"
             + "Nombre int,"
-            + "Evenement varchar(30),"
-            + "Utilisateur varchar(30),"
+            + "Evenement intger,"
+            + "Utilisateur integer,"
             + "FOREIGN KEY (Evenement) REFERENCES Evenement(Id),"
             + "FOREIGN KEY (Utilisateur) REFERENCES Utilisateur(Id));";
 
@@ -29,5 +29,11 @@ public interface ParticipeDao {
 
     @SqlUpdate("insert into participe values (:nombre, :ev, :utilisateur)")
     @GetGeneratedKeys
-    int addParticipe(@Bind("nombre") int nombre,@Bind("ev") String evenement,@Bind("utilisateur") String utilisateur );
+    int addParticipe(@Bind("nombre") int nombre,@Bind("ev") int evenement,@Bind("utilisateur") int utilisateur );
+
+    @SqlUpdate("delete from participe where id=:id")
+    int deleteParticipe(@Bind("id") int id);
+
+    @SqlQuery("Select * from participe where id=:id")
+    Participe getParticipe(@Bind("id") int id);
 }
