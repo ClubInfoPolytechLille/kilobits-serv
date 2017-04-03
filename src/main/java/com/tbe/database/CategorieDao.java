@@ -15,7 +15,7 @@ public interface CategorieDao {
     String strCreateCategorieTable = "Create table if not exists Categorie ("
             + "Id Integer primary key auto_increment,"
             + "Nom varchar(20) NOT NULL, "
-            + "Description text);";
+            + "Description varchar(500) NOT NULL);";
 
     @SqlUpdate(strCreateCategorieTable)
     void createCategorieTable();
